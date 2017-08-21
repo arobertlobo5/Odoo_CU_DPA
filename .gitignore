@@ -6,3 +6,6 @@ _build/
 !.gitignore
 # compiled python files
 *.py[co]
+
+# odoo run config
+odoo-server.cfg

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <!-- VIEWS: "Improving Forms and Trees Partner Views"
+        
+            - Model·········: res.partner
+            - Base Addons···: base    
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        
+        <!-- Form view for "res.partner" -->
+        
+        <record id="view_partner_address_form" model="ir.ui.view">
+            <field name="name">res.partner.form.address</field>
+            <field name="model">res.partner</field> 
+            <field name="inherit_id" ref="base.view_partner_address_form" /> 
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+           
+                <xpath expr="//field[@name='city']" position="after">
+                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'/>
+                </xpath>
+            </field>       
+        </record>
+        
+
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">view.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <!-- Hide original field and append new city field-->
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+           
+                <xpath expr="//field[@name='city']" position="after">                    
+                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'
+                                    attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                </xpath>
+
+                <!-- Contacts -->                 
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/div/div/field[@name='city']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/div/div/field[@name='city']" position="after">
+                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'/>
+                </xpath>                
+            </field>
+        </record>
+    </data>
+</odoo>

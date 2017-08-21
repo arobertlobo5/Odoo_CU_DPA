@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* cu_dpa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-20 23:41+0000\n"
+"PO-Revision-Date: 2017-08-20 23:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_acronym
+msgid "Acronym"
+msgstr "Sigla"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_company_city_id
+#: model:ir.model.fields,field_description:cu_dpa.field_res_partner_city_id
+#: model:ir.ui.view,arch_db:cu_dpa.view_company_form
+#: model:ir.ui.view,arch_db:cu_dpa.view_partner_address_form
+#: model:ir.ui.view,arch_db:cu_dpa.view_partner_form
+msgid "City"
+msgstr "Municipio"
+
+#. module: cu_dpa
+#: model:ir.model.fields,help:cu_dpa.field_res_country_state_city_code
+msgid "City code for country state."
+msgstr "Código del Municipio"
+
+#. module: cu_dpa
+#: model:ir.model,name:cu_dpa.model_res_country_state_city
+msgid "City from country state"
+msgstr "Municipio"
+
+#. module: cu_dpa
+#: model:ir.model.fields,help:cu_dpa.field_res_country_state_city_name
+msgid "City from country state according to political and administrative division."
+msgstr "Municipio conforme la División Política Administrativa."
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_name
+msgid "City name"
+msgstr "Nombre del municipio"
+
+#. module: cu_dpa
+#: code:addons/cu_dpa/models/inherited_res_partner.py:41
+#, python-format
+msgid "City not found or not according to state."
+msgstr "El municipio no se encuentra o no pertenece a la provincia."
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_code
+msgid "Code"
+msgstr "Código"
+
+#. module: cu_dpa
+#: model:ir.model,name:cu_dpa.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: cu_dpa
+#: model:ir.model,name:cu_dpa.model_res_country_state
+msgid "Country state"
+msgstr "Provincia"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_create_date
+msgid "Created at"
+msgstr "Creado el"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_id
+msgid "ID"
+msgstr "ID"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: cu_dpa
+#: model:ir.model,name:cu_dpa.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: cu_dpa
+#: model:ir.model.fields,help:cu_dpa.field_res_country_state_city_zip
+msgid "Post code (ZIP) for city."
+msgstr "Código Postal para el municipio."
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_state_id
+msgid "State"
+msgstr "Provincia"
+
+#. module: cu_dpa
+#: model:ir.model.fields,field_description:cu_dpa.field_res_country_state_city_zip
+msgid "ZIP"
+msgstr "Código Postal"

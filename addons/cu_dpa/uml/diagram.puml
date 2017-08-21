@@ -1,0 +1,177 @@
+@startuml
+
+' **************************************
+' Module: base
+' **************************************
+package base <<module>> {    
+}
+
+   
+package models as m1 {
+    class Country <<(M, yellow) Model>> {
+        _name = 'res.country'
+        ==
+        ...    
+    }
+
+    class Partner <<(M, yellow) Model>> {
+        _name = 'res.partner' 
+        ==
+        + city: Char()
+        + state_id: Many2one('res.country.state')  
+        ...
+    }
+
+    class Company <<(M, yellow) Model>> {
+        _name = 'res.company'
+        ==
+        +city: Char() {compute, inverse}
+        +partner_id: Many2one('res.partner')
+        --
+        #_compute_address(self)
+        #_inverse_city(self)
+    }
+
+    class CountryState <<(M, yellow) Model>>  {
+        _name = 'res.country.state'
+        ==
+        + country_id: Many2one('res.country')
+    }
+    
+    Country "1" -- "*" CountryState
+    Partner "*" -right- "1" Country
+    Partner "*" -right- "1" CountryState
+    Company "*" -- "1" Partner
+}
+
+
+package views as v1 {
+    package "res_country_views.xml" {
+        class view_country_state_tree <<(V, green) View>>
+        class view_country_state_form <<(V, green) View>>
+    }
+
+    package "res_compay_views.xml" {
+        class view_company_form <<(V, green) View>>
+    }
+
+    package "res_partner_views.xml" {
+        class view_partner_address_form <<(V, green) View>>
+        class view_partner_form <<(V, green) View>>
+    }
+
+    ' layout
+    "res_country_views.xml" -[hidden]- "res_compay_views.xml"
+    "res_compay_views.xml" -[hidden]- "res_partner_views.xml"
+}
+
+m1 --+ base
+v1 --+ base
+
+package cu_dpa <<module>> {
+}
+
+package views as v2 {
+    
+    package "city_views.xml" {
+        class view_country_state_city_tree <<(V, green) View>>
+        class view_country_state_city_form <<(V, green) View>>
+    }
+
+    package "inherited_res_company_views.xml" {
+        class "view_company_form" as H_view_company_form <<(V, green) View>> {
+        }
+    }
+
+    package "inherited_res_country_views.xml" {
+        class "view_country_state_tree" as H_view_country_state_tree <<(V, green) View>>
+        class "view_country_state_form" as H_view_country_state_form <<(V, green) View>>
+    }
+
+    package "inherited_res_partner_views.xml" {
+        class "view_partner_address_form" as H_view_partner_address_form <<(V, green) View>>
+        class "view_partner_form" as H_view_partner_form <<(V, green) View>>
+    }
+
+    H_view_company_form --|> view_company_form
+    H_view_country_state_tree --|> view_country_state_tree
+    H_view_country_state_form --|> view_country_state_form
+    H_view_partner_address_form --|> view_partner_address_form
+    H_view_partner_form --|> view_partner_form
+    ' layout
+    "city_views.xml" -[hidden]-"inherited_res_company_views.xml"
+    "inherited_res_company_views.xml" -[hidden]- "inherited_res_country_views.xml"
+    "inherited_res_country_views.xml" -[hidden]- "inherited_res_partner_views.xml"
+}
+
+package models as m2 {
+    class City <<(M, yellow) Model>> {
+        _name = 'res.country.state.county'
+        ==
+        +name: Char
+        +code: Char
+        +zip: Char
+        +state_id: Many2one('res.country.state')
+    }
+
+    class "CountryState" as hcs <<(M, yellow) Model>> {
+        _inherit = 'res.country' 
+        ==
+        +acronym: Char()
+    }
+
+    class "Partner" as hp <<(M, yellow) Model>> {
+        _inherit = 'res.partner'
+        ==
+        +city: Char() {compute, inverse, search}
+        +city_id: Many2one('res.country.city')
+        --
+        #_compute_city(self)
+        #_write_city(self)
+        #_search_city(self)
+        ...
+    }
+
+    class "Company" as hc <<(M, yellow) Model>> {
+        _inherit = 'res.company'
+        ==
+        +city_id: Many2one('res.country.city') {compute, inverse,}
+        --
+        #_compute_city_id(self)
+        #_write_city_id(self)
+        ...
+    }
+
+    CountryState "1" -- "*" City
+    CountryState <|-- hcs
+    Company <|-- hc
+    Partner <|-- hp
+    City "1" -- "*" hp
+    hc "*" -left- "1" City
+
+    ' layout
+    City -[hidden]- hcs
+}
+
+package data as d2 {
+    class "res.country.states.csv" as c1 <<(D, white) Data>>  {
+
+    }
+    class "res.country.state.city.csv" as c2 <<(D, white) Data>> {
+
+    }
+    
+    ' layout
+    ' c1 -[hidden]- c2
+}
+
+m2 --+ cu_dpa
+v2 --right+ cu_dpa
+d2 --left+ cu_dpa
+
+
+base <.. cu_dpa : depends
+hide empty members
+
+
+@enduml
