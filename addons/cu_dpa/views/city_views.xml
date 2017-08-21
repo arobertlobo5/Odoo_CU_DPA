@@ -16,6 +16,7 @@
                 <tree>
                     <field name="name" />
                     <field name="code" />
+                    <field name="zip" />
                     <field name="state_id" />
                 </tree>
             </field>
@@ -30,12 +31,12 @@
                 <form>
                     <group>    
                         <group>
-                            <field name="state_id" />
-                        </group>
-                        <group>
                             <field name="name" />
                             <field name="code" />
                             <field name="zip" />
+                        </group>
+                        <group>
+                            <field name="state_id" />
                         </group>
                     </group>
                 </form>

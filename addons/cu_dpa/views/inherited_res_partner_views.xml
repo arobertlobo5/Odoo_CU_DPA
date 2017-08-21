@@ -20,8 +20,12 @@
                 </xpath>
            
                 <xpath expr="//field[@name='city']" position="after">
-                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'/>
+                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}' domain="[('state_id', '=', state_id)]"/>
                 </xpath>
+
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="domain">[('country_id', '=', country_id)]</attribute>
+                </xpath> 
             </field>       
         </record>
         
@@ -38,8 +42,13 @@
            
                 <xpath expr="//field[@name='city']" position="after">                    
                     <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'
-                                    attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"
+                            domain="[('state_id', '=', state_id)]"/>
                 </xpath>
+
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="domain">[('country_id', '=', country_id)]</attribute>
+                </xpath> 
 
                 <!-- Contacts -->                 
                 <xpath expr="//field[@name='child_ids']/form/sheet/group/group/div/div/field[@name='city']" position="attributes">
@@ -47,8 +56,13 @@
                 </xpath>
                 
                 <xpath expr="//field[@name='child_ids']/form/sheet/group/group/div/div/field[@name='city']" position="after">
-                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'/>
-                </xpath>                
+                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'
+                            domain="[('state_id', '=', state_id)]"/>
+                </xpath>   
+
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/div/div/field[@name='state_id']" position="attributes">
+                    <attribute name="domain">[('country_id', '=', country_id)]</attribute>
+                </xpath>              
             </field>
         </record>
     </data>

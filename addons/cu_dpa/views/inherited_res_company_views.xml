@@ -18,10 +18,12 @@
                 </xpath>
            
                 <xpath expr="//field[@name='city']" position="after">                    
-                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}'/>
+                    <field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True}' domain="[('state_id', '=', state_id)]"/>
                 </xpath>
-
                 
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="domain">[('country_id', '=', country_id)]</attribute>
+                </xpath>               
             </field>
         </record>
     </data>
